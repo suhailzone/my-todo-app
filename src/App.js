@@ -6,13 +6,13 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      taskName : "",
+      taskName : '',
       list : []
     };
   }
 
   addItem(taskValue){
-    if(taskValue !== ""){
+    if(typeof(taskValue) != 'undefined'){
       const newItem = {
         id: Date.now(),
         value: taskValue,
@@ -22,8 +22,8 @@ class App extends React.Component{
       list.push(newItem);
 
       this.setState({
-        list,
-        taskName: ""
+        taskName: '',
+        list
       });
     }
   }
@@ -54,12 +54,12 @@ class App extends React.Component{
           className="btn-add"
         >Add</button><br />
         <h3>Task List:</h3>
-        <div className="list">
+        <div>
           <ul>
             {
               this.state.list.map(item => {
                 return(
-                    <li key={item.id}>
+                    <li className="list" key={item.id}>
                       <input
                         onChange={() => {}} 
                         type="checkbox"
@@ -73,7 +73,8 @@ class App extends React.Component{
                       >Delete</button>
                     </li>
                 );
-            })}
+              })
+            }
           </ul>
         </div>
       </div>
